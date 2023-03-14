@@ -334,7 +334,7 @@ class Graph(object):
         if plt is None:  # pragma: no cover
             raise NotImplementedError
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(12,12))
         if len(self._vertices[0].pose.position) == 3:
             fig.add_subplot(111, projection='3d')
 
