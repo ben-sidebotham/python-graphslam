@@ -314,11 +314,13 @@ class Graph(object):
             for e in self._edges:
                 f.write(e.to_g2o())
 
-    def plot(self, elev=60, azim=60, vertex_color='r', vertex_marker='o', vertex_markersize=3, edge_color='b', title=None):
+    def plot(self, figsize=(6.4,4.8), elev=60, azim=60, vertex_color='r', vertex_marker='o', vertex_markersize=3, edge_color='b', title=None):
         """Plot the graph.
 
         Parameters
         ----------
+        figsize : tuple
+            The figure size (width, height) in inches
         elev : float
             The elevation angle in degrees, the angle of the camera location above the x-y plane
         azim : float
@@ -338,7 +340,7 @@ class Graph(object):
         if plt is None:  # pragma: no cover
             raise NotImplementedError
 
-        fig = plt.figure(figsize=(12,12))
+        fig = plt.figure(figsize=figsize)
         if len(self._vertices[0].pose.position) == 3:
             ax = fig.add_subplot(111, projection='3d')
             ax.view_init(elev,azim)
