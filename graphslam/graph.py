@@ -314,11 +314,15 @@ class Graph(object):
             for e in self._edges:
                 f.write(e.to_g2o())
 
-    def plot(self, vertex_color='r', vertex_marker='o', vertex_markersize=3, edge_color='b', title=None):
+    def plot(self, elev=60, azim=60, vertex_color='r', vertex_marker='o', vertex_markersize=3, edge_color='b', title=None):
         """Plot the graph.
 
         Parameters
         ----------
+        elev : float
+            The elevation angle in degrees, the angle of the camera location above the x-y plane
+        azim : float
+            The azimuthal angle in degrees, rotates the camera about the vertical axis
         vertex_color : str
             The color that will be used to plot the vertices
         vertex_marker : str
@@ -336,7 +340,8 @@ class Graph(object):
 
         fig = plt.figure(figsize=(12,12))
         if len(self._vertices[0].pose.position) == 3:
-            fig.add_subplot(111, projection='3d')
+            ax = fig.add_subplot(111, projection='3d')
+            ax.view_init(elev,azim)
 
         for e in self._edges:
             e.plot(edge_color)
